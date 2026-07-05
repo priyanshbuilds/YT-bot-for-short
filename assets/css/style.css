@@ -1,0 +1,218 @@
+:root {
+    --bg-color: #070614;
+    --text-primary: #E2E8F0;
+    --text-secondary: #94A3B8;
+    
+    /* Neon Blue & Violet Theme */
+    --neon-blue: #00E5FF;
+    --neon-violet: #B300FF;
+    --gradient: linear-gradient(135deg, var(--neon-blue) 0%, var(--neon-violet) 100%);
+    
+    /* Glassmorphism */
+    --glass-bg: rgba(20, 15, 40, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    line-height: 1.7;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Background glows to create the neon/tech vibe */
+.glow-bg {
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(179,0,255,0.15) 0%, rgba(0,0,0,0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.glow-bg-2 {
+    position: fixed;
+    bottom: -20%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, rgba(0,229,255,0.15) 0%, rgba(0,0,0,0) 70%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 800;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+/* Stunning gradient text for the main headings */
+h1 {
+    font-size: 3rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: -1px;
+}
+
+h2 {
+    font-size: 2rem;
+    color: #fff;
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--neon-blue);
+}
+
+a {
+    color: var(--neon-blue);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--neon-violet);
+    text-shadow: 0 0 10px rgba(179, 0, 255, 0.5);
+}
+
+/* Markdown elements formatting */
+p {
+    color: var(--text-secondary);
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Glassmorphism for blockquotes */
+blockquote {
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    background: var(--glass-bg);
+    border-left: 4px solid var(--neon-violet);
+    border-radius: 0 12px 12px 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--glass-border);
+    border-right: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+blockquote p {
+    margin: 0;
+    color: #fff;
+    font-style: italic;
+}
+
+/* Glassmorphism for code blocks */
+pre {
+    background: var(--glass-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    overflow-x: auto;
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+code {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.95rem;
+    color: #A5B4FC;
+}
+
+/* Inline code */
+p code, li code {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 6px;
+    color: var(--neon-blue);
+    font-size: 0.9rem;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    background: var(--glass-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+th {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+/* Interactive elements */
+li {
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+    margin: 3rem 0;
+}
+
+footer {
+    text-align: center;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.accent-color {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Micro-animations */
+pre:hover, blockquote:hover, table:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 15px rgba(0, 229, 255, 0.1);
+    transition: all 0.3s ease;
+}

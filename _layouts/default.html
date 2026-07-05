@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <!-- Load custom fonts: Outfit for sleek modern look, Fira Code for tech -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glow-bg"></div>
+    <div class="glow-bg-2"></div>
+    <div class="container">
+        <main class="content">
+            {{ content }}
+        </main>
+        <footer>
+            <p>Built with <span class="accent-color">neon</span> & AI. Maintained by <a href="https://github.com/priyanshbuilds">priyanshbuilds</a>.</p>
+        </footer>
+    </div>
+</body>
+</html>
