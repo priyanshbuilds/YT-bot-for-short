@@ -1,4 +1,4 @@
-# Shorts Factory — an autonomous YouTube Shorts channel that runs itself
+# YT-Bot-For-Short — An autonomous YouTube Shorts channel by priyanshbuilds
 
 A self-hosted pipeline that **researches, scripts, produces, publishes, and learns** — one
 faceless YouTube Short at a time, three times a day, with no human in the loop. It plans a topic,
