@@ -120,6 +120,43 @@ second line of defense.
 
 ---
 
+## Thorough Repository Breakdown
+
+This is a fully autonomous, self-hosted YouTube Shorts pipeline. It runs headlessly on a Windows machine (orchestrated by Windows Task Scheduler) and uses the Claude Code CLI + local GPUs to research, write, animate, and publish faceless YouTube shorts without any human intervention.
+
+### 🧠 The "AI Agent" Briefs (Prompts)
+Instead of hardcoding complex logic in Python, this system uses Markdown "briefs" to tell an AI agent (Claude Code) what to do.
+*   **`daily_shorts_prompt.md`**: The master prompt that tells the AI to pick a topic, write a viral script, generate a voiceover, render the video, and upload it.
+*   **`learn_and_improve_prompt.md`**: A weekly brief where the AI acts as an analyst. It looks at the channel's YouTube analytics and updates its own strategy playbook to get more views.
+*   **`creator_study_prompt.md`**: A daily brief where the AI analyzes a top-performing competitor's video frame-by-frame to extract editing and pacing techniques.
+
+### ⚙️ The Five Autonomous Loops
+The system is divided into five main loops, triggered by simple `.bat` files on a schedule:
+1.  **Daily Shorts (Producer)** (`daily_shorts.bat`): Runs 3x a day. It triggers the main pipeline to produce and publish a single video.
+2.  **Learn & Improve (Analyst)** (`learn_shorts.bat`): Runs weekly. It evaluates past video performance to improve the next batch.
+3.  **Creator Study (Researcher)** (`study_creators.bat`): Runs daily to append new hooks and formats to the `competitor_playbook.md`.
+4.  **Digest (Notifier)** (`digest.bat` / `daily_digest.py` / `notify_email.py`): Compiles an HTML email digest summarizing what shipped today, how it performed, and sends it via Gmail SMTP.
+5.  **Dashboard** (`dashboard.py` / `Dashboard.bat`): A lightweight, always-on local web server that provides a text-based control panel to monitor what the agents are currently doing.
+
+### 🎬 Video Production & Asset Generation
+*   **`ClipPilot/` directory**: The heavy lifting engine for rendering the actual video. It uses Python for asset generation and Remotion (React-based video rendering) to composite the animation.
+*   **`zimage_gen.py` & `dl_zimage.py`**: Scripts for generating or downloading the visual assets for the shorts.
+*   **`make_elephant_short.py` / `produce_short_zimage.py`**: Orchestration scripts that stitch the transcript, audio (TTS), and generated images together into an MP4 file.
+
+### 📊 Analytics & Publishing
+*   **`post_to_youtube.py`**: Direct integration with the YouTube Data API to upload the finalized MP4 file with the generated title, description, and tags.
+*   **`ensure_postiz.ps1` & `postiz_yt_refresh.sh`**: Scripts to interact with Postiz (social media scheduling tool), ensuring OAuth tokens are fresh and the backend is healthy.
+*   **`yt_analytics.py` & `yt_top.py`**: Scripts that scrape/pull YouTube analytics (Click-Through Rate, Retention graphs) for the AI analyst to read, and find top competitor videos.
+
+### 📚 State, Ledgers, and Logs
+Because the AI needs memory, it writes to Markdown files instead of a database:
+*   **`daily_posts_ledger.md`**: An append-only log of every video the system has ever published.
+*   **`daily_topics.md`**: The backlog of topics, niches, and CPM angles the system plans to cover.
+*   **`learnings.md` / `competitor_playbook.md`**: The growing "brain" of the system where it stores new video formats and rules it has learned.
+*   **`variation/` directory**: An engine containing `variation_ledger.md`. It forces the AI to use different visual skins, voice actors, and title formats so YouTube doesn't terminate the channel for being "repetitive".
+
+---
+
 ## Tech stack
 
 - **Orchestration:** Claude Code CLI (headless `claude -p … --dangerously-skip-permissions`) +
